@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Xclusive Panels — curated luxury timepieces.">
+<title>Xclusive Panels | Time, Redefined.</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+:root{--bg:#070707;--panel:#101010;--text:#f4f1ea;--muted:#9c9a95;--line:#242424;--gold:#c8aa72;--max:1280px}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:Inter,Arial,sans-serif;overflow-x:hidden}
+a{text-decoration:none;color:inherit}button,input{font:inherit}.container{width:min(var(--max),92%);margin:auto}
+.cursor{position:fixed;width:14px;height:14px;border:1px solid #fff;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:.15s;mix-blend-mode:difference}
+header{position:fixed;top:0;left:0;width:100%;z-index:100;padding:24px 0;transition:.4s}
+header.scrolled{background:rgba(7,7,7,.78);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:"Cormorant Garamond",serif;font-size:27px;letter-spacing:4px;font-weight:700}
+.navlinks{display:flex;gap:32px;font-size:11px;text-transform:uppercase;letter-spacing:1.5px}
+.navlinks a{color:#d5d2ca;transition:.25s}.navlinks a:hover{color:var(--gold)}
+.navicons{display:flex;gap:16px;font-size:18px}.iconbtn{background:none;border:0;color:white;cursor:pointer}
+.menu{display:none}
+.hero{height:100vh;min-height:680px;position:relative;display:flex;align-items:center;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.82),rgba(0,0,0,.28)),url("https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=2200&q=85") center/cover;transform:scale(1.04);animation:heroZoom 12s ease-out forwards}
+.hero:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 70% 50%,transparent 0,rgba(0,0,0,.35) 55%,rgba(0,0,0,.7) 100%)}
+.hero-content{position:relative;z-index:2;max-width:760px;padding-top:80px}
+.eyebrow{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:22px}
+h1{font-family:"Cormorant Garamond",serif;font-size:clamp(70px,10vw,150px);line-height:.78;font-weight:500;letter-spacing:-3px}
+.hero p{max-width:510px;color:#c4c1ba;line-height:1.8;margin:34px 0;font-size:14px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}.btn{padding:15px 25px;border:1px solid #777;background:transparent;color:#fff;text-transform:uppercase;font-size:10px;letter-spacing:2px;cursor:pointer;transition:.3s}
+.btn.primary{background:#eee;color:#080808;border-color:#eee}.btn:hover{transform:translateY(-3px);border-color:var(--gold)}
+.scroll{position:absolute;bottom:30px;left:4%;z-index:3;font-size:9px;letter-spacing:3px;color:#aaa;text-transform:uppercase;writing-mode:vertical-rl}
+section{padding:120px 0}.section-head{display:flex;align-items:end;justify-content:space-between;margin-bottom:45px}
+.kicker{font-size:10px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:10px}
+h2{font-family:"Cormorant Garamond",serif;font-size:58px;font-weight:500}
+.section-head p{color:var(--muted);font-size:12px;max-width:310px;line-height:1.7}
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.card{position:relative;background:var(--panel);border:1px solid #171717;overflow:hidden;cursor:pointer}
+.card-img{height:370px;position:relative;overflow:hidden;background:#141414}
+.card-img img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1),filter .5s}
+.card:hover img{transform:scale(1.08);filter:brightness(1.1)}
+.card-tag{position:absolute;top:15px;left:15px;font-size:8px;letter-spacing:2px;background:#fff;color:#111;padding:7px 9px;z-index:2}
+.heart{position:absolute;top:14px;right:14px;border:0;background:rgba(0,0,0,.45);color:#fff;width:34px;height:34px;border-radius:50%;z-index:3;cursor:pointer}
+.card-info{padding:21px}.brand{font-size:9px;letter-spacing:2px;color:var(--gold);text-transform:uppercase}.name{font-family:"Cormorant Garamond";font-size:25px;margin:6px 0}.price{font-size:12px;color:#bbb}
+.reveal{opacity:0;transform:translateY(30px);transition:1s}.reveal.show{opacity:1;transform:none}
+.brands{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.brandbox{height:180px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:"Cormorant Garamond";font-size:31px;letter-spacing:2px;color:#c9c6be;transition:.4s}
+.brandbox:hover{background:#111;color:#fff;letter-spacing:5px}
+.feature{display:grid;grid-template-columns:1.05fr .95fr;min-height:650px;background:#0d0d0d}
+.feature-img{background:url("https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&w=1400&q=85") center/cover;min-height:550px}
+.feature-copy{display:flex;flex-direction:column;justify-content:center;padding:70px 8%}
+.feature-copy h2{font-size:75px;line-height:.9;margin:10px 0 25px}
+.feature-copy p{color:#a7a59f;line-height:1.9;font-size:13px;max-width:440px;margin-bottom:28px}
+.trust{background:#0c0c0c;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.trustgrid{display:grid;grid-template-columns:repeat(4,1fr)}.trustitem{padding:42px 25px;border-right:1px solid var(--line)}.trustitem:last-child{border:0}
+.trustitem strong{font-family:"Cormorant Garamond";font-size:25px;font-weight:600;display:block;margin-bottom:9px}.trustitem span{font-size:11px;color:#888;line-height:1.6}
+.newsletter{text-align:center;padding:130px 20px}.newsletter h2{font-size:70px}.newsletter p{color:#999;font-size:12px;margin:15px auto 30px}.email{display:flex;max-width:500px;margin:auto;border-bottom:1px solid #555}.email input{flex:1;background:none;border:0;outline:0;color:#fff;padding:15px 0}.email button{background:none;border:0;color:var(--gold);cursor:pointer;letter-spacing:2px;font-size:10px}
+footer{border-top:1px solid var(--line);padding:55px 0}.footergrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}.footlogo{font-family:"Cormorant Garamond";font-size:30px;letter-spacing:3px}.foot p{font-size:11px;color:#777;line-height:1.8;max-width:290px;margin-top:15px}.foot h4{font-size:9px;letter-spacing:2px;color:var(--gold);margin-bottom:18px}.foot a{display:block;font-size:11px;color:#999;margin:11px 0}.copyright{border-top:1px solid var(--line);margin-top:45px;padding-top:22px;color:#555;font-size:9px;letter-spacing:1px}
+.drawer{position:fixed;inset:0 0 0 auto;width:min(420px,92%);background:#0d0d0d;z-index:3000;transform:translateX(100%);transition:.45s;padding:100px 30px;border-left:1px solid var(--line)}.drawer.open{transform:none}.close{position:absolute;top:25px;right:25px;background:none;border:0;color:#fff;font-size:25px;cursor:pointer}.drawer h3{font-family:"Cormorant Garamond";font-size:38px}.cart-item{display:flex;gap:15px;padding:20px 0;border-bottom:1px solid var(--line)}.cart-item img{width:75px;height:75px;object-fit:cover}.cart-item small{color:#999}
+.toast{position:fixed;bottom:25px;left:50%;transform:translate(-50%,30px);background:#eee;color:#111;padding:13px 20px;font-size:10px;letter-spacing:1px;opacity:0;transition:.3s;z-index:5000}.toast.show{opacity:1;transform:translate(-50%,0)}
+@keyframes heroZoom{to{transform:scale(1)}}@media(max-width:850px){
+.navlinks{display:none}.menu{display:block}.cursor{display:none}.hero{min-height:700px}.hero-content{padding-top:100px}h1{font-size:75px}.products{grid-template-columns:repeat(2,1fr)}.card-img{height:300px}.brands{grid-template-columns:repeat(2,1fr)}.feature{grid-template-columns:1fr}.feature-img{min-height:430px}.trustgrid{grid-template-columns:repeat(2,1fr)}.trustitem{border-bottom:1px solid var(--line)}.footergrid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:520px){
+section{padding:80px 0}.container{width:90%}.logo{font-size:22px}.hero-content{padding-top:120px}h1{font-size:63px;letter-spacing:-2px}.hero p{font-size:12px}.section-head{display:block}.section-head p{margin-top:15px}h2{font-size:48px}.products{grid-template-columns:1fr 1fr;gap:9px}.card-img{height:230px}.card-info{padding:13px}.name{font-size:20px}.brands{grid-template-columns:1fr 1fr}.brandbox{height:130px;font-size:23px}.feature-copy h2{font-size:55px}.trustgrid{grid-template-columns:1fr 1fr}.trustitem{padding:30px 14px}.newsletter h2{font-size:50px}.footergrid{grid-template-columns:1fr 1fr}.foot:first-child{grid-column:1/-1}
+}
+</style>
+</head>
+<body>
+<div class="cursor"></div>
+
+<header id="header">
+<div class="container nav">
+<a class="logo" href="#">XCLUSIVE PANELS</a>
+<nav class="navlinks">
+<a href="#home">Home</a><a href="#shop">Shop</a><a href="#brands">Brands</a><a href="#about">About</a><a href="#contact">Contact</a>
+</nav>
+<div class="navicons">
+<button class="iconbtn" aria-label="Search" onclick="searchSite()">⌕</button>
+<button class="iconbtn" aria-label="Bag" onclick="openCart()">◌</button>
+<button class="iconbtn menu" onclick="openMenu()">☰</button>
+</div>
+</div>
+</header>
+
+<main>
+<section class="hero" id="home">
+<div class="container hero-content reveal show">
+<div class="eyebrow">Curated Timepieces · Xclusive Panels</div>
+<h1>TIME,<br>REDEFINED.</h1>
+<p>Discover distinctive timepieces selected for design, craftsmanship and presence. A refined destination for collectors and watch enthusiasts.</p>
+<div class="actions"><a class="btn primary" href="#shop">Explore Collection</a><a class="btn" href="#about">Our Story</a></div>
+</div>
+<div class="scroll">Scroll to explore</div>
+</section>
+
+<section id="shop">
+<div class="container">
+<div class="section-head reveal"><div><div class="kicker">The collection</div><h2>Featured Timepieces</h2></div><p>Selected pieces with an emphasis on character, condition and timeless design.</p></div>
+<div class="products">
+<article class="card reveal" onclick="addCart('Chronograph Steel','₹1,25,000','https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=700&q=80')">
+<div class="card-img"><span class="card-tag">NEW</span><button class="heart" onclick="event.stopPropagation();this.innerText='♥'">♡</button><img src="https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=900&q=85" alt="Luxury watch"></div>
+<div class="card-info"><div class="brand">Xclusive Selection</div><div class="name">Chronograph Steel</div><div class="price">₹1,25,000</div></div>
+</article>
+<article class="card reveal" onclick="addCart('Royal Black','₹2,10,000','https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=700&q=80')">
+<div class="card-img"><span class="card-tag">CURATED</span><button class="heart" onclick="event.stopPropagation();this.innerText='♥'">♡</button><img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=900&q=85" alt="Luxury watch"></div>
+<div class="card-info"><div class="brand">Xclusive Selection</div><div class="name">Royal Black</div><div class="price">₹2,10,000</div></div>
+</article>
+<article class="card reveal" onclick="addCart('Heritage Gold','₹1,85,000','https://images.unsplash.com/photo-1547996160-81dfa63595aa?auto=format&fit=crop&w=700&q=80')">
+<div class="card-img"><button class="heart" onclick="event.stopPropagation();this.innerText='♥'">♡</button><img src="https://images.unsplash.com/photo-1547996160-81dfa63595aa?auto=format&fit=crop&w=900&q=85" alt="Luxury watch"></div>
+<div class="card-info"><div class="brand">Xclusive Selection</div><div class="name">Heritage Gold</div><div class="price">₹1,85,000</div></div>
+</article>
+<article class="card reveal" onclick="addCart('Midnight Automatic','₹95,000','https://images.unsplash.com/photo-1539874754764-5a96559165b0?auto=format&fit=crop&w=700&q=80')">
+<div class="card-img"><span class="card-tag">LIMITED</span><button class="heart" onclick="event.stopPropagation();this.innerText='♥'">♡</button><img src="https://images.unsplash.com/photo-1539874754764-5a96559165b0?auto=format&fit=crop&w=900&q=85" alt="Luxury watch"></div>
+<div class="card-info"><div class="brand">Xclusive Selection</div><div class="name">Midnight Automatic</div><div class="price">₹95,000</div></div>
+</article>
+</div>
+</div>
+</section>
+
+<section id="brands">
+<div class="container">
+<div class="section-head reveal"><div><div class="kicker">Explore</div><h2>Discover by Brand</h2></div></div>
+<div class="brands reveal">
+<div class="brandbox">ROLEX</div><div class="brandbox">OMEGA</div><div class="brandbox">CARTIER</div><div class="brandbox">HUBLOT</div>
+<div class="brandbox">TUDOR</div><div class="brandbox">TAG HEUER</div><div class="brandbox">SEIKO</div><div class="brandbox">MORE</div>
+</div>
+</div>
+</section>
+
+<section class="container" id="about">
+<div class="feature reveal">
+<div class="feature-img"></div>
+<div class="feature-copy"><div class="kicker">The Xclusive Selection</div><h2>MORE THAN<br>TIME.</h2><p>Xclusive Panels was created for people who see a watch as more than an accessory. We curate distinctive timepieces selected for their design, craftsmanship and presence.</p><a class="btn" href="#contact">Discover Xclusive</a></div>
+</div>
+</section>
+
+<section class="trust">
+<div class="container trustgrid">
+<div class="trustitem reveal"><strong>Authenticity</strong><span>Every listed timepiece can be presented with relevant authenticity and provenance information.</span></div>
+<div class="trustitem reveal"><strong>Quality Checked</strong><span>Condition and specifications are documented clearly so you can buy with confidence.</span></div>
+<div class="trustitem reveal"><strong>Secure Payments</strong><span>Designed for secure, trusted checkout integrations.</span></div>
+<div class="trustitem reveal"><strong>Safe Delivery</strong><span>Premium packaging and secure delivery options where available.</span></div>
+</div>
+</section>
+
+<section class="newsletter" id="contact">
+<div class="kicker">Private access</div><h2>JOIN THE XCLUSIVE LIST</h2>
+<p>New arrivals, curated pieces and selected updates — delivered occasionally.</p>
+<form class="email" onsubmit="subscribe(event)"><input type="email" placeholder="Your email address" required><button>SUBSCRIBE →</button></form>
+</section>
+</main>
+
+<footer>
+<div class="container">
+<div class="footergrid">
+<div class="foot"><div class="footlogo">XCLUSIVE PANELS</div><p>A refined destination for distinctive watches and timeless design. Built for enthusiasts who value detail.</p></div>
+<div class="foot"><h4>SHOP</h4><a href="#shop">All Watches</a><a href="#shop">New Arrivals</a><a href="#brands">Brands</a></div>
+<div class="foot"><h4>COMPANY</h4><a href="#about">About</a><a href="#contact">Contact</a><a href="#">FAQ</a></div>
+<div class="foot"><h4>FOLLOW</h4><a href="#">Instagram</a><a href="#">WhatsApp</a><a href="#">Email</a></div>
+</div>
+<div class="copyright">© 2026 XCLUSIVE PANELS. ALL RIGHTS RESERVED.</div>
+</div>
+</footer>
+
+<aside class="drawer" id="cart">
+<button class="close" onclick="closeCart()">×</button><div class="kicker">Your selection</div><h3>Shopping Bag</h3><div id="cartItems"><p style="color:#777;margin-top:30px;font-size:12px">Your bag is currently empty.</p></div>
+<div style="margin-top:35px;border-top:1px solid #222;padding-top:20px"><button class="btn primary" style="width:100%" onclick="checkout()">Secure Checkout</button></div>
+</aside>
+
+<div class="drawer" id="mobileMenu" style="left:0;right:auto;transform:translateX(-100%);border-left:0;border-right:1px solid var(--line)">
+<button class="close" onclick="closeMenu()">×</button>
+<div style="display:flex;flex-direction:column;gap:25px;margin-top:50px;font-family:'Cormorant Garamond';font-size:35px">
+<a href="#home" onclick="closeMenu()">Home</a><a href="#shop" onclick="closeMenu()">Shop</a><a href="#brands" onclick="closeMenu()">Brands</a><a href="#about" onclick="closeMenu()">About</a><a href="#contact" onclick="closeMenu()">Contact</a>
+</div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const header=document.getElementById('header');
+window.addEventListener('scroll',()=>header.classList.toggle('scrolled',scrollY>30));
+const cursor=document.querySelector('.cursor');
+window.addEventListener('mousemove',e=>{cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px'});
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+let cart=[];
+function addCart(name,price,img){cart.push({name,price,img});renderCart();openCart();toast('Added to your selection');}
+function renderCart(){
+ const box=document.getElementById('cartItems');
+ if(!cart.length){box.innerHTML='<p style="color:#777;margin-top:30px;font-size:12px">Your bag is currently empty.</p>';return}
+ box.innerHTML=cart.map((x,i)=>`<div class="cart-item"><img src="${x.img}" alt=""><div><div style="font-family:Cormorant Garamond;font-size:22px">${x.name}</div><small>${x.price}</small><br><button onclick="removeCart(${i})" style="background:none;border:0;color:#777;font-size:10px;margin-top:8px;cursor:pointer">REMOVE</button></div></div>`).join('');
+}
+function removeCart(i){cart.splice(i,1);renderCart()}
+function openCart(){document.getElementById('cart').classList.add('open')}
+function closeCart(){document.getElementById('cart').classList.remove('open')}
+function openMenu(){const x=document.getElementById('mobileMenu');x.style.transform='translateX(0)'}
+function closeMenu(){const x=document.getElementById('mobileMenu');x.style.transform='translateX(-100%)'}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)}
+function subscribe(e){e.preventDefault();toast('Welcome to the Xclusive List');e.target.reset()}
+function searchSite(){const q=prompt('Search Xclusive Panels');if(q)toast('Search: '+q)}
+function checkout(){if(!cart.length){toast('Your selection is empty');return}toast('Connect your payment gateway to enable checkout')}
+</script>
+</body>
+</html>
